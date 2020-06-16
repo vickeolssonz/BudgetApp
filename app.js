@@ -1,4 +1,3 @@
-
 // BUDGET CONTROLLER
 var budgetController = (function(){
 
@@ -36,9 +35,22 @@ var UIController = (function(){
 // GLOBAL  CONTROLLER
 var controller = (function(budgetCtrl, UICtrl){
 
-    // Store them DOMstrings from the UI Obj
-    var DOM = UICtrl.getDOMstrings();
+    // APPLICAITON START CODE
+    var setUpEventlisteners = function(){
+        // Store them DOMstrings from the UI Obj
+        var DOM = UICtrl.getDOMstrings();
 
+        document.querySelector(DOM.inputButton).addEventListener('click',ctrlAddItem); // If button is clicked run ctrlAddItem Function!!
+
+        // Global scope and pressed key of enter 
+        document.addEventListener('keypress',function(event){
+    
+            if(event.keyCode === 13 || event.which === 13){
+                ctrlAddItem();  // If keyKode 13 is pressed run ctrlAddItem Function!!
+            }
+        });
+
+    }  
 
     var ctrlAddItem = function(){
 
@@ -56,18 +68,14 @@ var controller = (function(budgetCtrl, UICtrl){
         // Display budget in UI
     }
 
-
-    document.querySelector(DOM.inputButton).addEventListener('click',ctrlAddItem); // If button is clicked run ctrlAddItem Function!!
-
-    // Global scope and pressed key of enter 
-    document.addEventListener('keypress',function(event){
-
-        if(event.keyCode === 13 || event.which === 13){
-            ctrlAddItem();  // If keyKode 13 is pressed run ctrlAddItem Function!!
+    return{
+        init:function(){
+            console.log('Application has started.');
+            setUpEventlisteners();
         }
-
-    });
-
-   
+    }
+  
 })(budgetController, UIController);
 
+// Start application
+controller.init();
