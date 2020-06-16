@@ -1,7 +1,32 @@
+
 // BUDGET CONTROLLER
 var budgetController = (function(){
 
- 
+    // Creating func constructor
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+    // Create a obj storing some values in props
+    var data = {
+       allItems: {
+           exp:[],
+           inc:[]
+       },
+       totals: {
+           exp:0,
+           inc:0
+       }
+    };
+
 })();
 
 
@@ -79,3 +104,5 @@ var controller = (function(budgetCtrl, UICtrl){
 
 // Start application
 controller.init();
+
+
